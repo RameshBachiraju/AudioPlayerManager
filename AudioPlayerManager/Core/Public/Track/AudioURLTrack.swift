@@ -156,7 +156,7 @@ extension AudioURLTrack {
 	override open func observeValue(forKeyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
 		if (forKeyPath == Keys.timedMetadata) {
 			// Extract the meta data if the timedMetadata changed
-			self.extractMetadata()
+			//self.extractMetadata()
 		}
 	}
 }
