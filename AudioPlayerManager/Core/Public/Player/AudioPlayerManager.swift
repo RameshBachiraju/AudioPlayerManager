@@ -473,7 +473,7 @@ open class AudioPlayerManager: NSObject {
 		}
 	}
     
-    func currentPlayer()-> AVPlayer?{
+   open func currentPlayer()-> AVPlayer?{
         if let _ = self.player{
             return self.player
         }
