@@ -472,6 +472,13 @@ open class AudioPlayerManager: NSObject {
 			}
 		}
 	}
+    
+    func currentPlayer()-> AVPlayer?{
+        if let _ = self.player{
+            return self.player
+        }
+        return nil
+    }
 }
 
 extension AudioPlayerManager {
