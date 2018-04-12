@@ -119,9 +119,9 @@ open class AudioPlayerManager: NSObject {
 	open func play(updateNowPlayingInfo: Bool = false) {
 		if let _player = self.player {
 			_player.play()
-			if (updateNowPlayingInfo == true || self.didStopPlayback == true) {
-				self.updateNowPlayingInfoIfNeeded()
-			}
+//            if (updateNowPlayingInfo == true || self.didStopPlayback == true) {
+//                self.updateNowPlayingInfoIfNeeded()
+//            }
 			self.didStopPlayback = false
 			self.startPlaybackTimeChangeTimer()
 			self.callPlayStateChangeCallbacks()
@@ -379,8 +379,8 @@ open class AudioPlayerManager: NSObject {
 		if (self.player?.responds(to: #selector(setter: AVAudioMixing.volume)) == true) {
 			self.player?.volume = 1.0
 		}
-		self.player?.allowsExternalPlayback = true
-		self.player?.usesExternalPlaybackWhileExternalScreenIsActive = true
+	//	self.player?.allowsExternalPlayback = true
+	//	self.player?.usesExternalPlaybackWhileExternalScreenIsActive = true
 	}
 
 	fileprivate func setupRemoteControlEvents() {
@@ -402,7 +402,7 @@ open class AudioPlayerManager: NSObject {
 		if let _currentTrack = self.queue.currentTrack {
 			self.player = AVPlayer()
 			self.initPlayer()
-			_currentTrack.loadResource()
+			//_currentTrack.loadResource()
 			if let _playerItem = _currentTrack.avPlayerItem() {
 				if #available(iOS 10.0, *) {
 					_playerItem.preferredForwardBufferDuration = self.preferredForwardBufferDuration

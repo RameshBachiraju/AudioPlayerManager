@@ -102,7 +102,7 @@ open class AudioTrack : NSObject {
 
 	func prepareForPlaying(_ playerItem: AVPlayerItem) {
 		self.playerItem = playerItem
-		self.initNowPlayingInfo()
+		//self.initNowPlayingInfo()
 	}
 
 	func cleanupAfterPlaying() {
