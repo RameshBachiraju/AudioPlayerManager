@@ -199,6 +199,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 3A4866021D50A7D700CC4A04;
@@ -379,7 +380,7 @@
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0.1;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -402,7 +403,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = de.seiffert.hans.swift.audioplayermanager;
 				PRODUCT_NAME = AudioPlayerManager;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0.1;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
