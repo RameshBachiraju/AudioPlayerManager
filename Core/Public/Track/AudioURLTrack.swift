@@ -29,6 +29,11 @@ open class AudioURLTrack: AudioTrack {
 		self.init()
 		self.url = url
 	}
+    
+    // Removing KVO in de-init
+    deinit {
+        playerItem?.addObserver(self, forKeyPath: Keys.timedMetadata, options: NSKeyValueObservingOptions.initial, context: nil)
+    }
 
 	open class func makeTracks(of urlStrings: [String], withStartIndex startIndex: Int) -> (tracks: [AudioURLTrack], startIndex: Int) {
 		return self.makeTracks(of: AudioURLTrack.convertToURLs(urlStrings), withStartIndex: startIndex)
