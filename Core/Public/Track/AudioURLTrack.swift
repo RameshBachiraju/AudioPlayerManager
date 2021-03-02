@@ -53,12 +53,6 @@ open class AudioURLTrack: AudioTrack {
 
 	// MARK: - Lifecycle
 
-	override func cleanupAfterPlaying() {
-		// Remove the timedMetadata observer as the AVPlayerItem will be released now
-		self.playerItem?.removeObserver(self, forKeyPath: Keys.timedMetadata, context: nil)
-		super.cleanupAfterPlaying()
-	}
-
 	open override func avPlayerItem() -> AVPlayerItem? {
 		if let _url = self.url {
 			return AVPlayerItem(url: _url)
