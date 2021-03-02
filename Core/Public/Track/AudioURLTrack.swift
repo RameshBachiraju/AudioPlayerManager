@@ -29,11 +29,6 @@ open class AudioURLTrack: AudioTrack {
 		self.init()
 		self.url = url
 	}
-    
-    // Removing KVO in de-init
-    deinit {
-        playerItem?.addObserver(self, forKeyPath: Keys.timedMetadata, options: NSKeyValueObservingOptions.initial, context: nil)
-    }
 
 	open class func makeTracks(of urlStrings: [String], withStartIndex startIndex: Int) -> (tracks: [AudioURLTrack], startIndex: Int) {
 		return self.makeTracks(of: AudioURLTrack.convertToURLs(urlStrings), withStartIndex: startIndex)
@@ -57,12 +52,6 @@ open class AudioURLTrack: AudioTrack {
 	}
 
 	// MARK: - Lifecycle
-
-	override func prepareForPlaying(_ avPlayerItem: AVPlayerItem) {
-		super.prepareForPlaying(avPlayerItem)
-		// Listen to the timedMetadata initialization. We can extract the meta data then
-		self.playerItem?.addObserver(self, forKeyPath: Keys.timedMetadata, options: NSKeyValueObservingOptions.initial, context: nil)
-	}
 
 	override func cleanupAfterPlaying() {
 		// Remove the timedMetadata observer as the AVPlayerItem will be released now
@@ -150,18 +139,6 @@ open class AudioURLTrack: AudioTrack {
 			})
 		} else {
 			return MPMediaItemArtwork(image: image)
-		}
-	}
-}
-
-// MARK: - KVO
-
-extension AudioURLTrack {
-
-	override open func observeValue(forKeyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
-		if (forKeyPath == Keys.timedMetadata) {
-			// Extract the meta data if the timedMetadata changed
-			//self.extractMetadata()
 		}
 	}
 }
