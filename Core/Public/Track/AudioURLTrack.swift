@@ -53,18 +53,6 @@ open class AudioURLTrack: AudioTrack {
 
 	// MARK: - Lifecycle
 
-	override func prepareForPlaying(_ avPlayerItem: AVPlayerItem) {
-		super.prepareForPlaying(avPlayerItem)
-		// Listen to the timedMetadata initialization. We can extract the meta data then
-		self.playerItem?.addObserver(self, forKeyPath: Keys.timedMetadata, options: NSKeyValueObservingOptions.initial, context: nil)
-	}
-
-	override func cleanupAfterPlaying() {
-		// Remove the timedMetadata observer as the AVPlayerItem will be released now
-		self.playerItem?.removeObserver(self, forKeyPath: Keys.timedMetadata, context: nil)
-		super.cleanupAfterPlaying()
-	}
-
 	open override func avPlayerItem() -> AVPlayerItem? {
 		if let _url = self.url {
 			return AVPlayerItem(url: _url)
@@ -145,18 +133,6 @@ open class AudioURLTrack: AudioTrack {
 			})
 		} else {
 			return MPMediaItemArtwork(image: image)
-		}
-	}
-}
-
-// MARK: - KVO
-
-extension AudioURLTrack {
-
-	override open func observeValue(forKeyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
-		if (forKeyPath == Keys.timedMetadata) {
-			// Extract the meta data if the timedMetadata changed
-			//self.extractMetadata()
 		}
 	}
 }
